@@ -1,0 +1,4 @@
+names:
+  0: bird
+path: C:\Users\willi\PycharmProjects\testingfiftyone\yolo_bird_data
+val: .\images\val\
