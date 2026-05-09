@@ -1,16 +1,11 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import PIL.Image as Image
+from ultralytics import YOLO
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+model = YOLO('yolov8n.pt')
+results = model('.../imagePath', classes=[14], conf=0.1) #can change conf to show more / less birds depending on accuracy
+for r in results:
+    im_array = r.plot(conf=False, labels=True)
 
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    im = Image.fromarray(im_array[..., ::-1])
+    im.show()
